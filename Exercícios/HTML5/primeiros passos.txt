@@ -1,0 +1,12 @@
+Pra iniciar esses exercícios, precisaremos dos seguintes itens:
+
+* computador
+* editor de texto (estou usando o VisualStudioCode)
+* força de vontade rsrs
+
+
+For these exercises, we will need the following items:
+
+* computer
+* text editor (I'm using VisualStudioCode)
+* willpower lol
