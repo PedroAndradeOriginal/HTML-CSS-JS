@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D¨E¨T¨R¨A¨N</title>
+
+    <style>
+        body {
+            background-color: lightgray;
+            color: white;
+            font: normal 12pt Helvetica;
+        }
+
+        div#borda {
+            background-color: midnightblue;
+            margin-top: 30px;
+            border: 1px solid #adaaaa;
+            padding: 0px 20px 20px 20px;
+            border-radius: 1px;
+            width: 350px;
+            height: 250px;
+            overflow: hidden;
+            border-color: gray;
+        }
+
+        hr {
+            margin-top: 20px;
+        }
+
+        div#resultado1 {
+            margin-top: 20px;
+        }
+
+        div#resultado2 {
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="borda">
+        <h1>Sistema de multas</h1>
+        <p>Digite a velocidade registrada, no campo abaixo:</p>
+        <input id="campoVelocidade" type="number" required="" />
+        <button type="submit">Verificar</button>
+        <hr>
+        <div id="resultado1">
+
+        </div>
+        <div id="resultado2">
+
+        </div>
+    </div>
+
+    <script>
+
+        document.querySelector('button').addEventListener("click", testelogico, false);
+        document.querySelector('input#campoVelocidade').onkeydown = function (e) {
+            var keyCode = e ? (e.which ? e.which : e.keyCode) : event.keyCode;
+            if (keyCode == 13) {
+                testelogico()
+            }
+        }
+
+        function testelogico() {
+
+            if (document.querySelector('input#campoVelocidade').value == "") {
+                alert("Digite a velocidade do veículo")
+            } else {
+                var velocidade = document.querySelector('input#campoVelocidade').value;
+                document.querySelector('div#resultado1').innerHTML = "O veículo estava a <strong>" + velocidade + " Km/h</strong>";
+                if (velocidade > 60) {
+                    document.querySelector('div#resultado2').innerHTML = "MULTADO!";
+                } else if (velocidade == 0) {
+                    document.querySelector('div#resultado2').innerHTML = "O veículo estava parado";
+                } else {
+                    document.querySelector('div#resultado2').innerHTML = "O veículo circulou dentro da velocidade permitida";
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
