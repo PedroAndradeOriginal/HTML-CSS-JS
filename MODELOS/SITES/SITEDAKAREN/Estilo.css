@@ -1,0 +1,75 @@
+.top {
+    padding-bottom: 5px;
+    margin: 0;
+    width: auto;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.display-4 {
+    color: white;
+}
+
+legend {
+    font-size: x-small;
+    color: white;
+}
+
+.footer {
+    text-align: center;
+    width: 100%;
+}
+
+.carousel {
+    margin-bottom: 4rem;
+}
+
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+.carousel-item {
+    height: 25rem;
+    background-color: #777;
+}
+
+.carousel-item>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 25rem;
+}
+
+.marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.marketing h2 {
+    font-weight: 300;
+}
+
+.marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+}
+
+@media (min-width: 40em) {
+    /* Aumenta o tamanho do conteúdo do carousel */
+    .carousel-caption p {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+    .featurette-heading {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 62em) {
+    .featurette-heading {
+        margin-top: 7rem;
+    }
+}
