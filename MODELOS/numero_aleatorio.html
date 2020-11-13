@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+        body {
+            height: 100%;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+        
+        .formulario {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+        
+        .formulario .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        .formulario .form-control:focus {
+            z-index: 2;
+        }
+        
+        .formulario input[type="number"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 5;
+            border-bottom-left-radius: 5;
+        }
+        
+        .formulario input[type="number"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 5;
+            border-top-right-radius: 5;
+        }
+    </style>
+
+    <title>Número Aleatório</title>
+
+</head>
+
+<body class="text-center">
+    <form class="formulario">
+        <h1 class="h3 mb-3 font-weight-bold">0</h1>
+        <h2 class="h3 mb-3 font-weight-normal">Gerar um número aleatório</h2>
+        <label class="sr-only">Número menor</label>
+        <input type="number" id="numeroMenor" class="form-control" placeholder="de" required autofocus>
+        <label class="sr-only">Número maior</label>
+        <input type="number" id="numeroMaior" class="form-control" placeholder="Até" required>
+        <button class="btn btn-lg btn-primary btn-block" onclick="gerarNumero()" type="button">Gerar</button><br>
+        <footer></footer>
+        <p class="mt-5 mb-3 text-muted">&copy;2020 - Desenvolvido por A_Family <br>(Pedro Andrade 21 98357-8774)</p>
+
+    </form>
+
+    <script>
+        function gerarNumero() {
+            var min = document.querySelector('#numeroMenor').value;
+            var max = document.querySelector('#numeroMaior').value;
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            if (min >= max) {
+                alert("Não é possível gerar um número aleatório com o intervalo apresentado!");
+            } else {
+                var resultado = sortear(min, max);
+                document.querySelector('h1').innerHTML = resultado;
+                var ultimoNumero = document.querySelector('footer');
+                ultimoNumero.innerHTML += resultado + ' - ';
+            }
+        }
+
+        function sortear(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+
+
+</body>
+
+</html>
