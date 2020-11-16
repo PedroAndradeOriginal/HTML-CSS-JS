@@ -68,24 +68,49 @@
 
     </form>
 
-    <script>
-        function gerarNumero() {
-            var min = document.querySelector('#numeroMenor').value;
-            var max = document.querySelector('#numeroMaior').value;
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            if (min >= max) {
+     <script>
+        let numPrincipal = document.querySelector("h1");
+        let botao = document.querySelector("button");
+        let numerosAnteriores = document.querySelector("footer");
+
+        botao.addEventListener('click', trataValores, false);
+
+        function trataValores() {
+            let numMenor = document.querySelector("input#numeroMenor").value;
+            let numMaior = document.querySelector("input#numeroMaior").value;
+            numMenor = parseInt(numMenor);
+            numMaior = parseInt(numMaior);
+            if (numMenor >= numMaior) {
                 alert("Não é possível gerar um número aleatório com o intervalo apresentado!");
             } else {
-                var resultado = sortear(min, max);
-                document.querySelector('h1').innerHTML = resultado;
-                var ultimoNumero = document.querySelector('footer');
-                ultimoNumero.innerHTML += resultado + ' - ';
+                numerosNoArray = criarArray(numMenor, numMaior);
+                if (numerosNoArray.length == 0) {
+                    numPrincipal.innerHTML = "Todos os possíveis números dentro desse intervalo foram gerados, atualize a página para outro sorteio"
+                    return;
+                }
+                let indiceRandomico = gerarNumero(0, numerosNoArray.length - 1);
+                let numeroRandomico = numerosNoArray[indiceRandomico];
+                numerosNoArray.splice(indiceRandomico, 1);
+                numPrincipal.innerHTML = numeroRandomico;
+                numerosAnteriores.innerHTML += numeroRandomico + ' - ';
             }
         }
 
-        function sortear(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
+        function criarArray(comeco, fim) {
+            let meuArray = [];
+
+            for (let i = comeco; i <= fim; i++) {
+                meuArray.push(i);
+            }
+            return meuArray;
+        }
+
+        function gerarNumero(min, max) {
+
+            let passo1 = max - min + 1;
+            let passo2 = Math.random() * passo1;
+            let resultado = Math.floor(passo2) + min;
+            return resultado;
         }
     </script>
 
