@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Índice de Massa Corporal</title>
+    <style>
+        body {
+            height: 100%;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+        
+        .formulario {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+        
+        .formulario .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        .formulario .form-control:focus {
+            z-index: 2;
+        }
+        
+        .formulario input[type="number"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 5;
+            border-bottom-left-radius: 5;
+        }
+        
+        .formulario input[type="number"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 5;
+            border-top-right-radius: 5;
+        }
+    </style>
+
+</head>
+
+<body class="text-center">
+    <form class="formulario">
+        <h1 class="h3 mb-3 font-weight-bold">?</h1>
+        <h2 class="h3 mb-3 font-weight-normal">Calcule seu IMC</h2><br>
+        <label class="sr-only">peso</label>
+        <input type="number" id="peso" class="form-control" placeholder="Peso" required autofocus>
+        <label class="sr-only">altura</label>
+        <input type="number" id="altura" class="form-control" placeholder="Altura" required>
+        <button class="btn btn-lg btn-primary btn-block" type="button">Calcular</button>
+        <p class="mt-5 mb-3 text-muted">&copy;2020 - Desenvolvido por A_Family <br>(Pedro Andrade 21 98357-8774)</p>
+
+    </form>
+
+    <script>
+        let imc = document.querySelector("h1");
+        let descricao = document.querySelector("h2");
+        const botao = document.querySelector("button");
+        let resultadoFinal = ""
+
+        botao.addEventListener('click', processar, false);
+
+        function processar() {
+            numeroImc = gerarNumero();
+            if (numeroImc < 18.5) {
+                resultadoFinal = "Voce esta abaixo de seu peso.";
+            }
+            if (numeroImc >= 18.5 && numeroImc <= 24.9) {
+                resultadoFinal = "Parabens!!! Voce esta no seu peso ideal.";
+            }
+            if (numeroImc >= 25 && numeroImc <= 29.9) {
+                resultadoFinal = "Você está acima de seu peso (sobrepeso).";
+            }
+            if (numeroImc >= 30 && numeroImc <= 34.9) {
+                resultadoFinal = "Você está com obesidade grau I.";
+            }
+            if (numeroImc >= 35) {
+                resultadoFinal = "Você está com obesidade grau II (severa).";
+            }
+
+            imc.innerHTML = numeroImc;
+            descricao.innerHTML = resultadoFinal;
+        }
+
+        function gerarNumero() {
+            let peso = document.querySelector('#peso').value.replace(",", ".");
+            let altura = document.querySelector('#altura').value.replace(",", ".");
+            peso = parseFloat(peso);
+            altura = parseFloat(altura);
+            let resultado = peso / (altura * altura);
+            return resultado.toFixed(2);
+        }
+
+        /*switch (numeroImc) {
+            case (numeroImc < 18.5):
+                resultadoFinal = "Voce esta abaixo de seu peso.";
+                break;
+            case (numeroImc >= 18.5 && numeroImc <= 24.9):
+                resultadoFinal = "Parabens!!! Voce esta no seu peso ideal.";
+                break;
+            case (numeroImc >= 25 && numeroImc <= 29.9):
+                resultadoFinal = "Você está acima de seu peso (sobrepeso).";
+                break;
+            case (numeroImc >= 30 && numeroImc <= 34.9):
+                resultadoFinal = "Você está com Obesidade grau I.";
+                break;
+            case (numeroImc >= 35):
+                resultadoFinal = "Você está com Obesidade grau II (severa).";
+                break;
+        }*/
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
