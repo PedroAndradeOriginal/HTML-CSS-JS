@@ -68,37 +68,88 @@
 
     </form>
 
-     <script>
+    <script>
         let numPrincipal = document.querySelector("h1");
         let botao = document.querySelector("button");
+        let numMenor;
+        let numMaior;
         let numerosAnteriores = document.querySelector("footer");
+        let arrayRange;
+        let arraySorteados = [];
+        let meuArray2 = [];
+        let numeroRandomico = 1;
+        let indiceRandomico;
+        let i = 0;
+        let j = 0;
 
         botao.addEventListener('click', trataValores, false);
 
+        arrayRange;
+        arraySorteados = [];
+        meuArray2 = [];
+        numeroRandomico = 1;
+        indiceRandomico;
+        i = 0;
+        j = 0;
+
         function trataValores() {
-            let numMenor = document.querySelector("input#numeroMenor").value;
-            let numMaior = document.querySelector("input#numeroMaior").value;
+            numMenor = document.querySelector("input#numeroMenor").value;
+            numMaior = document.querySelector("input#numeroMaior").value;
             numMenor = parseInt(numMenor);
             numMaior = parseInt(numMaior);
             if (numMenor >= numMaior) {
                 alert("Não é possível gerar um número aleatório com o intervalo apresentado!");
             } else {
-                numerosNoArray = criarArray(numMenor, numMaior);
-                if (numerosNoArray.length == 0) {
+                arrayRange = criaArrayRange(numMenor, numMaior);
+                if (arraySorteados.length == (numMaior - numMenor) + 1) {
                     numPrincipal.innerHTML = "Todos os possíveis números dentro desse intervalo foram gerados, atualize a página para outro sorteio"
                     return;
                 }
-                let indiceRandomico = gerarNumero(0, numerosNoArray.length - 1);
-                let numeroRandomico = numerosNoArray[indiceRandomico];
-                numerosNoArray.splice(indiceRandomico, 1);
-                numPrincipal.innerHTML = numeroRandomico;
-                numerosAnteriores.innerHTML += numeroRandomico + ' - ';
+                while (i < 1) {
+                    if (arraySorteados.length == (numMaior - numMenor) + 1) {
+                        numPrincipal.innerHTML = "Todos os possíveis números dentro desse intervalo foram gerados, atualize a página para outro sorteio"
+                        return;
+                    }
+                    indiceRandomico = gerarNumero(0, arrayRange.length - 1);
+                    numeroRandomico = arrayRange[indiceRandomico];
+                    arraySorteados = criaArraySorteados(numeroRandomico);
+                    numPrincipal.innerHTML = numeroRandomico;
+                    numerosAnteriores.innerHTML += numeroRandomico + ' - ';
+                    i++;
+                }
+
+                i++;
+
+                if (i > 2) {
+                    while (j < 1) {
+                        if (arraySorteados.length == (numMaior - numMenor) + 1) {
+                            numPrincipal.innerHTML = "Todos os possíveis números dentro desse intervalo foram gerados, atualize a página para outro sorteio"
+                            return;
+                        }
+                        indiceRandomico = gerarNumero(0, arrayRange.length - 1);
+                        numeroRandomico = arrayRange[indiceRandomico];
+                        if (arraySorteados.indexOf(numeroRandomico) === -1) {
+                            numPrincipal.innerHTML = numeroRandomico;
+                            numerosAnteriores.innerHTML += numeroRandomico + ' - ';
+                            arraySorteados.push(numeroRandomico);
+                            j++;
+                        }
+                    }
+                }
+
+                j = 0;
+
             }
         }
 
-        function criarArray(comeco, fim) {
-            let meuArray = [];
 
+        function criaArraySorteados(num) {
+            meuArray2.push(num);
+            return meuArray2;
+        }
+
+        function criaArrayRange(comeco, fim) {
+            let meuArray = [];
             for (let i = comeco; i <= fim; i++) {
                 meuArray.push(i);
             }
